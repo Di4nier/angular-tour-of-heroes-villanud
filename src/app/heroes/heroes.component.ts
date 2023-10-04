@@ -8,11 +8,16 @@ import { HEROES } from '../mock-heroes';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent {
-  hero: Hero = {
-    id: 1,
-    name: 'Mechanicus'
-  };
+  // hero: Hero = {
+  //   id: 1,
+  //   name: 'Mechanicus'
+  // };
 
   heroes = HEROES;
+
+  selectedHero?: Hero;
+onSelect(hero: Hero): void {
+  this.selectedHero = hero;
+}
 
 }
