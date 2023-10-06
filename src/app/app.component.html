@@ -1,7 +1,21 @@
-<h1>{{title}}</h1>
+<header>
+    <a href="~/">
+        <img src="../assets/logo.jpg" id="logo" />
+    </a>
+    
+    <h1>{{title}}</h1>
+</header>
 <nav>
     <a routerLink="/dashboard">Dashboard</a>
     |
     <a routerLink="/heroes">Heroes</a>
 </nav>
+
+
 <router-outlet></router-outlet>
+
+<footer>
+    <p>
+        Made by villanud
+    </p>
+</footer>
