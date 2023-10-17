@@ -1,0 +1,49 @@
+h2 {
+    text-align: center;
+    color: #fff;
+    font-family: "Trolls";
+    font-size: 2rem;
+  }
+
+  .heroes-menu {
+    padding: 1rem;
+    margin: auto;
+    max-width: 1000px;
+  
+    /* flexbox */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(142, 142, 142, 0.238);
+    backdrop-filter: blur(8px);
+
+    border-radius: 10px;
+  }
+
+  .txt-accueil{
+    color: #fff;
+    font-family: "Trolls";
+    text-align: justify;   
+  }
+  
+
+ a {
+    padding: 0.8rem;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
+  }
+  
+  a:hover {
+    color: white;
+    background-color: orange;
+  }
+  a:active {
+    background-color: black;
+  }

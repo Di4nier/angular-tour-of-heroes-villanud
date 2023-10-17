@@ -5,4 +5,5 @@ export interface Hero {
     esquive: number;
     degats: number;
     pv: number;
+    skin: string;
   }

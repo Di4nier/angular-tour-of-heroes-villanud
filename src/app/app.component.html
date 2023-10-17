@@ -1,19 +1,20 @@
 <header>
-    <a href="~/">
-        <img src="../assets/logo.jpg" id="logo" />
+    <a routerLink="/accueil">
+        <img src="../assets/logofr.jpg" id="logo" />
     </a>
     
     <h1>{{title}}</h1>
+
+    <nav>
+         <a routerLink="/dashboard">Dashboard</a>
+       |
+        <a routerLink="/heroes">Heroes</a>
+    </nav>
 </header>
-<nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    |
-    <a routerLink="/heroes">Heroes</a>
-</nav>
 
-
-<router-outlet></router-outlet>
-
+<section id="bg">
+    <router-outlet></router-outlet>
+</section>
 <footer>
     <p>
         Made by villanud

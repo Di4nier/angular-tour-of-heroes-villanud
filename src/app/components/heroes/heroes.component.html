@@ -1,8 +1,10 @@
-<h2>My Heroes</h2>
-
+<div class="flex">
+<h2>Mes Trolls </h2>
+<a routerLink="/add"><img src="../../../assets/icons/add.svg" id="add_logo"></a>
+</div>
 
 <div class="row">
-    <!-- <ul class="heroes">
+  <!-- <ul class="heroes">
         <li *ngFor="let hero of heroes">
           <button type="button" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
             <span class="badge">{{hero.id}}</span>
@@ -11,17 +13,60 @@
         </li>
     </ul> -->
 
-    <ul class="heroes">
-        <li *ngFor="let hero of heroes">
-          <a routerLink="/detail/{{hero.id}}">
+  <!-- <div class="book">
+      <p>Hello</p>
+      <div class="cover">
+          <p>Hover Me</p>
+      </div>
+     </div> -->
+
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes">
+      <a routerLink="/detail/{{hero.id}}">
+        <div class="book">
+          <div class="icon-container">
+            <div class="icon-div">
+              <img src="../../../assets/icons/attaque.svg" class="icon-attack" title="Attaque">
+              <p>{{hero.attaque}}</p>
+            </div>
+
+            <div class="icon-div">
+              <img src="../../../assets/icons/esquive.svg" class="icon-esquive" title="Esquive">
+              <p>{{hero.esquive}}</p>
+            </div>
+
+            <div class="icon-div">
+              <img src="../../../assets/icons/degats.svg" class="icon-degats" title="Degats">
+              <p>{{hero.degats}}</p>
+            </div>
+
+            <div class="icon-div">
+              <img src="../../../assets/icons/pv.svg" class="icon-pv" title="Vie">
+              <p>{{hero.pv}}</p>
+            </div>
+
+            <div class="icon-div">
+              <a routerLink="/dashboard">
+              <img src="../../../assets/icons/bin.svg" class="icon-bin" title="Delete">
+            </a>
+            </div>
+          </div>
+          <div class="cover">
+            <img src="../../../assets/trollskins/{{hero.skin}}" id="imgtroll">
+            <span class="card-id">{{hero.id}}</span>
+            <p class="card-name">{{hero.name}}</p>
+          </div>
+        </div>
+      </a>
+      <!-- <a routerLink="/detail/{{hero.id}}">
             <span class="badge">{{hero.id}}</span> {{hero.name}}
             
-          </a>
-        </li>
-    </ul>
+          </a> -->
+    </li>
+  </ul>
 
 
-    <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+  <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
 
-    <app-messages></app-messages>
+  <!-- <app-messages></app-messages> -->
 </div>

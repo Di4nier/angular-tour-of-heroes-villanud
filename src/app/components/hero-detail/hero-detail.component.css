@@ -1,18 +1,29 @@
 /* HeroDetailComponent's private CSS styles */
+h2 {
+  margin: 2rem;
+  text-align: center;
+  color: #fff;
+  font-family: "Trolls";
+  font-size: 2rem;
+}
+
 label {
-    color: #435960;
-    font-weight: bold;
+  color: #fff;
+  font-weight: bold;
+  font-family: "Trolls";
+
   }
   input {
     font-size: 1em;
     padding: .5rem;
   }
   button {
-    margin-top: 20px;
+    margin-top: 1.7rem;
+    height: fit-content;
     background-color: #eee;
-    padding: 1rem;
-    border-radius: 4px;
-    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 30px;
+    font-size: 0.5rem;
   }
   button:hover {
     background-color: #cfd8dc;
@@ -22,3 +33,86 @@ label {
     color: #ccc;
     cursor: auto;
   }
+
+  .heroes-menu {
+    padding: 1rem;
+    margin: auto;
+    max-width: 1000px;
+  
+    /* flexbox */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(142, 142, 142, 0.238);
+    backdrop-filter: blur(8px);
+
+    border-radius: 10px;
+  }
+
+  .containe-troll{
+    text-align: center;
+
+  }
+
+  .form-control{
+  display: flex;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: orange solid 1px;
+  border-radius: 10px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  outline: none;
+  }
+
+  #skin-troll{
+    margin-top: 1.8rem;
+    margin-left: 2.5rem;
+    width: 15rem;
+    padding: 1rem;
+    filter: drop-shadow(0px 0px 5px #fff);
+
+  }
+
+
+  #goback{
+    width: 2rem;
+  }
+
+  .input{
+    margin-top: 1rem;
+  }
+
+  .input > p{
+    font-family: "Trolls";
+    color: red;
+  }
+
+  .container-img{
+    margin-top: 1rem;
+    background-color: #12101048;
+    border-radius: 100%;
+    width: 35%;
+    background-image: url(../../../assets/back-card.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  

@@ -1,11 +1,45 @@
 <div *ngIf="hero">
+  <div class="flex">
+    <button type="button" (click)="goBack()"><img src="../../../assets/icons/goback.svg" alt="go back"
+        id="goback"></button>
+    <h2>Troll : {{hero.name | uppercase}}</h2>
+  </div>
 
-    <h2>{{hero.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{hero.id}}</div>
-    <div>
-      <label for="hero-name">Hero name: </label>
-      <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+  <div class="heroes-menu">
+
+    <div class="containe-troll">
+      <div>
+        <label for="hero-name">Name : </label>
+        <input id="hero-name" class="form-control" [(ngModel)]="hero.name" placeholder="name">
+      </div>
+      <div class="input">
+        <label for="hero-attaque">Attaque : </label>
+        <input id="hero-attaque" class="form-control" [(ngModel)]="hero.attaque" placeholder="attaque">
+      </div>
+      <div class="input">
+        <label for="hero-esquive">Esquive : </label>
+        <input id="hero-esquive" class="form-control" [(ngModel)]="hero.esquive" placeholder="esquive">
+      </div>
+      <div class="input">
+        <label for="hero-degats">Degats : </label>
+        <input id="hero-degats" class="form-control" [(ngModel)]="hero.degats" placeholder="degats">
+      </div>
+      <div class="input">
+        <label for="hero-pv">PV : </label>
+        <input id="hero-pv" class="form-control" [(ngModel)]="hero.pv" placeholder="pv">
+      </div>
+
+      <div class="input">
+        <p>Points Attribuées : <span>40/40</span></p>
+      </div>
+    
     </div>
-  
+
+    <div class="container-img">
+      <img src="../../../assets/trollskins/{{hero.skin}}" id="skin-troll">
+    </div>
+
+  </div>
+
+ 
 </div>
-<button type="button" (click)="goBack()">go back</button>
