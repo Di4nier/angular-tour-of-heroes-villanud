@@ -3,6 +3,7 @@ import { Hero } from '../../data/hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../../services/hero.service';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-hero-detail',
@@ -38,9 +39,6 @@ export class HeroDetailComponent implements AfterViewInit {
   }
 
   getStats(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
 
     const attak = this.hero?.attaque as number;
     const esquive = this.hero?.esquive as number;
@@ -55,7 +53,7 @@ export class HeroDetailComponent implements AfterViewInit {
 
     if (attak && esquive && degats && pv) {
       total = total + attak + esquive + degats + pv;
-      if (total === 40) {
+      if (total >= 40) {
         ppuntos.className = "complete";
         inputs.forEach(item => {
           item.classList.add("complete");
@@ -69,7 +67,6 @@ export class HeroDetailComponent implements AfterViewInit {
 
   handleChange(): void {
 
-    alert("hello");
     let points = document.getElementById("puntos") as HTMLElement;
     let ppuntos = document.getElementById("container-puntos") as HTMLElement;
     const inputs = document.querySelectorAll('input[type="number"]') as NodeListOf<HTMLInputElement>;
@@ -87,19 +84,61 @@ export class HeroDetailComponent implements AfterViewInit {
 
     const sum = attackvalue + esquivevalue + degatsvalue + pvvalue;
 
-    console.log(sum);
+    
+    if(attackvalue <= 0){
+      alert("Minimum : 1");
+      window.location = window.location;
+    }
+    if(esquivevalue <= 0){
+      alert("Action Impossible : Dépassement Limite Points");
+      window.location = window.location;
+    }if(degatsvalue <= 0){
+      alert("Action Impossible : Dépassement Limite Points");
+      window.location = window.location;
+    }if(pvvalue <= 0){
+      alert("Action Impossible : Dépassement Limite Points");
+      window.location = window.location;
+    }
 
-    if (sum === 40) {
+    if(sum > 40 || sum < 4){
+      alert("Action Impossible : Dépassement Points");
+      window.location = window.location;
+    }
+
+    if (sum >= 40) {
       ppuntos.className = "complete";
       inputs.forEach(item => {
-        item.className = "complete";
+        item.classList.add("complete");
       });
     }
     else {
       ppuntos.className = "";
+      inputs.forEach(item => {
+        item.classList.remove("complete");
+      });
     }
     points.innerHTML = sum.toString() + " / 40";
 
+    this.getNewSkin(attackvalue, esquivevalue, degatsvalue, pvvalue );
+
+
+  }
+
+  getNewSkin(attaque: number, esquive: number, degats: number, pv: number): void{
+
+    if(attaque === 10 && esquive === 10 && degats===10 && pv === 10){
+      this.hero!.skin = "balanced_troll";
+    }
+    else if(pv >= 20){
+      this.hero!.skin = "pv_troll";
+    }
+    else if(esquive >= 20){
+      this.hero!.skin = "speed_troll";
+    }else if (degats >= 20){
+      this.hero!.skin = "damages_troll";
+    }else{
+      this.hero!.skin = "speed_troll2";
+    }
   }
 
   // setUp(): void {
@@ -109,31 +148,30 @@ export class HeroDetailComponent implements AfterViewInit {
   //   // this.parentNode.querySelector('input[type=number]').stepUp()
   //   // document.getElementById('data-filter').value = ++dataValue;
   // }
-  stepUp(id: string): void {
-    let inputVal = document.getElementById(id) as HTMLInputElement;
-    let value = Number(inputVal.value);
+  // stepUp(id: string): void {
+  //   let inputVal = document.getElementById(id) as HTMLInputElement;
+  //   let value = Number(inputVal.value);
 
-    value = value + 1;
+  //   value = value + 1;
 
 
     // this.parentNode.querySelector('input[type=number]').stepUp()
     // document.getElementById('data-filter').value = ++dataValue;
   }
 
-  stepDown(id: string): void {
-    let inputVal = document.getElementById(id) as HTMLInputElement;
-    let value = Number(inputVal.value);
+  // stepDown(id: string): void {
+  //   let inputVal = document.getElementById(id) as HTMLInputElement;
+  //   let value = Number(inputVal.value);
 
-    value = value - 1;
+  //   value = value - 1;
 
-    this.hero!.esquive = this.hero!.esquive - 1;
+  //   this.hero!.esquive = this.hero!.esquive - 1;
 
 
-    inputVal.value = value.toString();
+  //   inputVal.value = value.toString();
 
     // this.parentNode.querySelector('input[type=number]').stepUp()
     // document.getElementById('data-filter').value = ++dataValue;
-  }
+  
 
-}
 
