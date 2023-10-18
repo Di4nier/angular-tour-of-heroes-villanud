@@ -7,39 +7,69 @@
 
   <div class="heroes-menu">
 
-    <div class="containe-troll">
+    <div class="containe-troll" (change)="handleChange()">
       <div>
         <label for="hero-name">Name : </label>
         <input id="hero-name" class="form-control" [(ngModel)]="hero.name" placeholder="name">
       </div>
       <div class="input">
+        <div>
+
         <label for="hero-attaque">Attaque : </label>
-        <input id="hero-attaque" class="form-control" [(ngModel)]="hero.attaque" placeholder="attaque">
+        </div>
+        <div class="number-input">
+          <button (click)="stepDown('hero-attaque')"></button>
+          <input id="hero-attaque" class="form-control" type="number" min="1" max="37" onKeyDown="return false"
+            [(ngModel)]="hero.attaque" placeholder="attaque">
+          <button (click)="stepUp('hero-attaque')" class="plus"></button>
+        </div>
       </div>
       <div class="input">
+        <div>
+
         <label for="hero-esquive">Esquive : </label>
-        <input id="hero-esquive" class="form-control" [(ngModel)]="hero.esquive" placeholder="esquive">
+        </div>
+        <div class="number-input">
+          <button (click)="stepDown('hero-esquive')"></button>
+          <input id="hero-esquive" class="form-control" type="number" min="1" max="37" onKeyDown="return false"
+            [(ngModel)]="hero.esquive" placeholder="esquive">
+          <button (click)="stepUp('hero-esquive')" class="plus"></button>
+        </div>
       </div>
       <div class="input">
+        <div>
         <label for="hero-degats">Degats : </label>
-        <input id="hero-degats" class="form-control" [(ngModel)]="hero.degats" placeholder="degats">
+        </div>
+        <div class="number-input">
+          <button (click)="stepDown('hero-degats')"></button>
+          <input id="hero-degats" class="form-control" type="number" min="1" max="37" onKeyDown="return false"
+            [(ngModel)]="hero.degats" placeholder="degats">
+          <button (click)="stepUp('hero-degats')" class="plus"></button>
+        </div>
       </div>
       <div class="input">
+        <div>
+
         <label for="hero-pv">PV : </label>
-        <input id="hero-pv" class="form-control" [(ngModel)]="hero.pv" placeholder="pv">
+        </div>
+        <div class="number-input">
+          <button (click)="stepDown('hero-pv')"></button>
+          <input id="hero-pv" class="form-control" type="number" min="1" max="37" onKeyDown="return false"
+            [(ngModel)]="hero.pv" placeholder="pv">
+          <button (click)="stepUp('hero-pv')" class="plus"></button>
+        </div>
+      </div>
+      <div class="input">
+        <p id="container-puntos">Points Attribuées : <span id="puntos">...</span></p>
       </div>
 
-      <div class="input">
-        <p>Points Attribuées : <span>40/40</span></p>
-      </div>
-    
     </div>
 
     <div class="container-img">
-      <img src="../../../assets/trollskins/{{hero.skin}}" id="skin-troll">
+      <img src="../../../assets/trollskins/{{hero.skin}}.png" id="skin-troll">
     </div>
 
   </div>
 
- 
+
 </div>
