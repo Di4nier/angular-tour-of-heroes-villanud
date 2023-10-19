@@ -32,7 +32,8 @@ export class HeroDetailComponent implements AfterViewInit {
   }
 
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id)
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
 
@@ -43,7 +44,7 @@ export class HeroDetailComponent implements AfterViewInit {
     const attak = this.hero?.attaque as number;
     const esquive = this.hero?.esquive as number;
     const degats = this.hero?.degats as number;
-    const pv = this.hero?.pv as number;
+    const pv = this.hero?.PV as number;
 
     let points = document.getElementById("puntos") as HTMLElement;
     let ppuntos = document.getElementById("container-puntos") as HTMLElement;
