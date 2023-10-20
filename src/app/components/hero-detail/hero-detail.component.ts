@@ -3,8 +3,6 @@ import { Hero } from '../../data/hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../../services/hero.service';
-import { fakeAsync } from '@angular/core/testing';
-import { max } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -56,7 +54,7 @@ export class HeroDetailComponent {
       let fourty = 40;
 
       let detecor = fourty - this.total;
-  
+
       this.MaxLimitAttack = this.hero!.attaque + detecor;
       this.MaxLimitEsquive = this.hero!.esquive + detecor;
       this.MaxLimitDegats = this.hero!.degats + detecor;
@@ -83,12 +81,12 @@ export class HeroDetailComponent {
     this.MaxLimitDegats = this.hero!.degats + detecor;
     this.MaxLimitPV = this.hero!.PV + detecor;
 
-    
+
     if (this.hero!.attaque <= 0) {
       alert("Minimum : 1");
       window.location = window.location;
     }
-    if (this.hero!.esquive  <= 0) {
+    if (this.hero!.esquive <= 0) {
       alert("Action Impossible : Dépassement Limite Points");
       window.location = window.location;
     } if (this.hero!.degats <= 0) {
@@ -99,20 +97,20 @@ export class HeroDetailComponent {
       window.location = window.location;
     }
 
-    if (this.total > 40 || this.total  < 4) {
+    if (this.total > 40 || this.total < 4) {
       alert("Action Impossible : Dépassement Points");
       window.location = window.location;
     }
 
-    if (this.total  >= 40) {
+    if (this.total >= 40) {
       this.classComplet = "complete";
-      
+
     }
     else {
       this.classComplet = "";
     }
 
-    this.getNewSkin(this.hero!.attaque , this.hero!.esquive, this.hero!.degats, this.hero!.PV);
+    this.getNewSkin(this.hero!.attaque, this.hero!.esquive, this.hero!.degats, this.hero!.PV);
 
   }
 
@@ -121,7 +119,7 @@ export class HeroDetailComponent {
     if (attaque === 10 && esquive === 10 && degats === 10 && pv === 10) {
       this.hero!.skin = "balanced_troll";
     }
-    else if (attaque >= 20){
+    else if (attaque >= 20) {
       this.hero!.skin = "attaque_troll"
     }
     else if (pv >= 20) {
@@ -137,42 +135,42 @@ export class HeroDetailComponent {
   }
 
 
-  UpdateTroll(): void{
-    try{
+  UpdateTroll(): void {
+    try {
 
       this.heroService.updateHero(this.hero!);
       var x = document.getElementById("snackbar");
       x!.className = "show";
-      setTimeout(function(){ x!.className = x!.className.replace("show", ""); }, 3000);
+      setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
 
-    }catch(e){
+    } catch (e) {
       var x = document.getElementById("snackbar2");
       x!.className = "show";
-      setTimeout(function(){ x!.className = x!.className.replace("show", ""); }, 3000);
+      setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
     }
 
-}
-
-DeleteTroll(): void{
-  try{
-
-    if (confirm("Etes vous sur de vouloir supprimer ce Troll ?")) {
-      this.heroService.deleteHero(this.hero!.id!);
-      
-      var x = document.getElementById("snackbar");
-      x!.className = "show";
-      setTimeout(function(){ x!.className = x!.className.replace("show", ""); }, 3000);
-      window.location.href = "../heroes";
-    } else {
-      console.log('Action annuler');
-    }
-  }catch(e){
-    var x = document.getElementById("snackbar2");
-    x!.className = "show";
-    setTimeout(function(){ x!.className = x!.className.replace("show", ""); }, 3000);
   }
 
-}
+  DeleteTroll(): void {
+    try {
+
+      if (confirm("Etes vous sur de vouloir supprimer ce Troll ?")) {
+        this.heroService.deleteHero(this.hero!.id!);
+
+        var x = document.getElementById("snackbar");
+        x!.className = "show";
+        setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+        window.location.href = "../heroes";
+      } else {
+        console.log('Action annuler');
+      }
+    } catch (e) {
+      var x = document.getElementById("snackbar2");
+      x!.className = "show";
+      setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+    }
+
+  }
 
 
 

@@ -5,14 +5,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { WeaponsComponent } from './components/weapons/weapons.component';
+import { WeaponDetailComponent } from './components/weapon-detail/weapon-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accueil', component: AccueilComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'troll/detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'weapons', component: WeaponsComponent },
+  { path: 'weapon/detail/:id', component: WeaponDetailComponent },
+
 
 ];
 
