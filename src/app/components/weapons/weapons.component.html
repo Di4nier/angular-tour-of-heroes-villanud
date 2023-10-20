@@ -1,6 +1,6 @@
 <div class="flex">
-    <h2>Mes Armes </h2>
-    <button class="btnn" (click)="newWeapon()"><img src="../../../assets/icons/add.svg" id="add_logo"></button>
+  <h2>Mes Armes </h2>
+  <button class="btnn" (click)="newWeapon()"><img src="../../../assets/icons/add.svg" id="add_logo"></button>
 </div>
 
 <div class="row">
@@ -9,37 +9,37 @@
   <ul class="heroes">
     <li *ngFor="let weapon of weapons">
       <a routerLink="/weapon/detail/{{weapon.id}}">
-        <div class="book">
-          <div class="icon-container">
-            <div class="icon-div">
-              <img src="../../../assets/icons/attaque.svg" class="icon-attack" title="Attaque">
-              <p>{{weapon.attaque}}</p>
+        <div class="myCard">
+          <div class="innerCard">
+            <div class="frontSide">
+              <p class="title">{{weapon.name}}</p>
+              <img src="../../../assets/weaponskins/{{weapon.skin}}.gif" id="imgtroll">
             </div>
+            <div class="backSide">
+              <p class="title">Stats</p>
 
-            <div class="icon-div">
-              <img src="../../../assets/icons/esquive.svg" class="icon-esquive" title="Esquive">
-              <p>{{weapon.esquive}}</p>
-            </div>
+              <div class="icon-container">
+                <div class="icon-div">
+                  <img src="../../../assets/icons/attaque.svg" class="icon-attack" title="Attaque">
+                  <p>{{weapon.attaque}}</p>
+                </div>
 
-            <div class="icon-div">
-              <img src="../../../assets/icons/degats.svg" class="icon-degats" title="Degats">
-              <p>{{weapon.degats}}</p>
-            </div>
+                <div class="icon-div">
+                  <img src="../../../assets/icons/esquive.svg" class="icon-esquive" title="Esquive">
+                  <p>{{weapon.esquive}}</p>
+                </div>
 
-            <div class="icon-div">
-              <img src="../../../assets/icons/pv.svg" class="icon-pv" title="Vie">
-              <p>{{weapon.PV}}</p>
-            </div>
+                <div class="icon-div">
+                  <img src="../../../assets/icons/degats.svg" class="icon-degats" title="Degats">
+                  <p>{{weapon.degats}}</p>
+                </div>
 
-            <div class="icon-div">
-              <a routerLink="/dashboard">
-              <img src="../../../assets/icons/bin.svg" class="icon-bin" title="Delete">
-            </a>
+                <div class="icon-div">
+                  <img src="../../../assets/icons/pv.svg" class="icon-pv" title="Vie">
+                  <p>{{weapon.PV}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="cover">
-            <img src="../../../assets/weaponskins/{{weapon.skin}}.gif" id="imgtroll">
-            <p class="card-name">{{weapon.name}}</p>
           </div>
         </div>
       </a>

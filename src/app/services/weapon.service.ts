@@ -77,7 +77,7 @@ export class WeaponService {
         weaponDocument => { // success
           weapon.id = weaponDocument.id;
           resolve(weapon);
-          window.location.href = "../detail/" + weapon.id;
+          window.location.href = "/weapon/detail/" + weapon.id;
         },
         msg => { // error
           reject(msg);

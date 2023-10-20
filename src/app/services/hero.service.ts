@@ -78,7 +78,7 @@ export class HeroService {
         heroDocument => { // success
           hero.id = heroDocument.id;
           resolve(hero);
-          window.location.href = "../detail/" + hero.id;
+          window.location.href = "/troll/detail/" + hero.id;
         },
         msg => { // error
           reject(msg);

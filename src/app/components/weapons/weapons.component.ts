@@ -24,6 +24,6 @@ export class WeaponsComponent implements OnInit {
   }
   
   newWeapon(): void{
-
+    this.weaponService.addWeapon();
   }
 }
