@@ -9,9 +9,9 @@ import {
   Firestore,
   updateDoc
 } from "@angular/fire/firestore";
-import {map, Observable} from "rxjs";
-import {DocumentData} from "rxfire/firestore/interfaces";
-import {Hero} from "../data/hero";
+import { map, Observable } from "rxjs";
+import { DocumentData } from "rxfire/firestore/interfaces";
+import { Hero } from "../data/hero";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ import {Hero} from "../data/hero";
 export class HeroService {
 
   // URL d'accès aux documents sur Firebase
-  private static url = 'heroes';
+  private static url = 'Trolls';
 
   constructor(private firestore: Firestore) {
   }
@@ -28,6 +28,7 @@ export class HeroService {
 
     // get a reference to the user-profile collection
     const heroCollection = collection(this.firestore, HeroService.url);
+    console.log(heroCollection);
 
     ///////////
     // Solution 1 : Transformation en une liste d'objets "prototype" de type Hero
@@ -37,7 +38,7 @@ export class HeroService {
     ///////////
     // Solution 2 : Transformation en une liste d'objets de type Hero
     return collectionData(heroCollection, { idField: 'id' }).pipe(
-      map( (documents) => documents.map((heroDocumentData) => {
+      map((documents) => documents.map((heroDocumentData) => {
         return HeroService.transformationToHero(heroDocumentData);
       }))) as Observable<Hero[]>;
   }
@@ -55,14 +56,15 @@ export class HeroService {
     ///////////
     // Solution 2 : Transformation en un objet de type Hero
     return docData(heroDocument, { idField: 'id' }).pipe(     // Ajout de l'id dans le document data
-      map( (heroDocumentData) => {
+      map((heroDocumentData) => {
         if (heroDocumentData) {
           return HeroService.transformationToHero(heroDocumentData as DocumentData);
         } else {
           // Gérer le cas où heroDocumentData est undefined
           // Par exemple, vous pouvez renvoyer une valeur par défaut ou générer une erreur
           throw new Error('heroDocumentData is undefined');
-      }      })) as Observable<Hero>
+        }
+      })) as Observable<Hero>
   }
 
   addHero(): Promise<Hero> {
@@ -71,11 +73,12 @@ export class HeroService {
     const heroCollection = collection(this.firestore, HeroService.url);
     let hero: Hero = new Hero();
 
-    let heroPromise: Promise<Hero> = new Promise( (resolve, reject) => {
+    let heroPromise: Promise<Hero> = new Promise((resolve, reject) => {
       addDoc(heroCollection, HeroService.transformationToJSON(hero)).then(
         heroDocument => { // success
           hero.id = heroDocument.id;
           resolve(hero);
+          window.location.href = "../detail/" + hero.id;
         },
         msg => { // error
           reject(msg);
@@ -97,10 +100,7 @@ export class HeroService {
 
   deleteHero(id: string): Promise<void> {
 
-    // Récupération du DocumentReference
     const heroDocument = doc(this.firestore, HeroService.url + "/" + id);
-
-    //
     return deleteDoc(heroDocument);
   }
 

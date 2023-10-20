@@ -12,6 +12,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { WeaponsComponent } from './components/weapons/weapons.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MessagesComponent,
     DashboardComponent,
     AccueilComponent,
+    WeaponsComponent,
   ],
   imports: [
     BrowserModule,

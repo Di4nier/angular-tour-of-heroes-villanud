@@ -8,7 +8,7 @@
   <div class="heroes-menu">
 
 
-    <p class="instructions">Règles : <br><br> Minimum de 1 points par Caractéristique. <br> <br>Veuillez appuyez sur [entrée] pour valider le chiffre.</p>
+    <p class="instructions"><u>Règles :</u> <br><br> Minimum de 1 points par Caractéristique. <br><br> Maximum de 40 Points en tout.</p>
 
 
     <div class="containe-troll" (change)="handleChange()">
@@ -19,58 +19,58 @@
       <div class="input">
         <div>
 
-        <label for="hero-attaque">Attaque : </label>
+          <label for="hero-attaque">Attaque : </label>
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-attaque')"></button> -->
-          <input id="hero-attaque" class="form-control" type="number" [min]="1" [max]="37"
-            [(ngModel)]="hero.attaque" placeholder="attaque">
+          <input id="hero-attaque" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="hero.attaque"
+            placeholder="attaque">
           <!-- <button (click)="stepUp('hero-attaque')" class="plus"></button> -->
         </div>
       </div>
       <div class="input">
         <div>
 
-        <label for="hero-esquive">Esquive : </label>
+          <label for="hero-esquive">Esquive : </label>
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-esquive')"></button> -->
-          <input id="hero-esquive" class="form-control" type="number" [min]="1" [max]="37"
-            [(ngModel)]="hero.esquive" placeholder="esquive">
+          <input id="hero-esquive" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="hero.esquive"
+            placeholder="esquive">
           <!-- <button (click)="stepUp('hero-esquive')" class="plus"></button> -->
         </div>
       </div>
       <div class="input">
         <div>
-        <label for="hero-degats">Degats : </label>
+          <label for="hero-degats">Degats : </label>
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-degats')"></button> -->
-          <input id="hero-degats" class="form-control" type="number" [min]="1" [max]="37"
-            [(ngModel)]="hero.degats" placeholder="degats">
+          <input id="hero-degats" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="hero.degats"
+            placeholder="degats">
           <!-- <button (click)="stepUp('hero-degats')" class="plus"></button> -->
         </div>
       </div>
       <div class="input">
         <div>
 
-        <label for="hero-pv">PV : </label>
+          <label for="hero-pv">PV : </label>
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-pv')"></button> -->
-          <input id="hero-pv" class="form-control" type="number" [min]="1" [max]="37"
-            [(ngModel)]="hero.PV" placeholder="pv">
+          <input id="hero-pv" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitPV }}" onkeydown="return false" [(ngModel)]="hero.PV"
+            placeholder="pv">
           <!-- <button (click)="stepUp('hero-pv')" class="plus"></button> -->
         </div>
       </div>
       <div class="input">
-        <p id="container-puntos">Points Attribuées : <span id="puntos">...</span></p>
+        <p id="container-puntos" class="{{classComplet}}">Points Attribuées : <span id="puntos">{{ total }} / 40</span></p>
       </div>
 
     </div>
 
-    <a class="button" routerLink="/save">Valider</a>
-
+    <button (click)="UpdateTroll()" class="button-valid" >Sauvegarder</button>
+    <button (click)="DeleteTroll()" class="button-suppr" >Supprimer</button>
 
     <div class="container-img">
       <img src="../../../assets/trollskins/{{hero.skin}}.png" id="skin-troll">

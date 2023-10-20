@@ -133,12 +133,12 @@ button:disabled {
 
 /* INPUT NUMBER css */
 
-
+/* 
 input[type="number"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
-}
+} */
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -155,7 +155,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .number-input button {
-  outline:none;
+  outline: none;
   -webkit-appearance: none;
   background-color: transparent;
   border: none;
@@ -178,6 +178,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #FFF;
   transform: translate(-50%, -50%);
 }
+
 .number-input button.plus:after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
@@ -186,15 +187,13 @@ input[type=number]::-webkit-outer-spin-button {
   font-family: sans-serif;
   width: 5rem;
   padding: 0;
-  border: solid #ddd;
-  border-width: 0 2px;
   font-size: 1.1rem;
   height: 3rem;
   font-weight: bold;
   text-align: center;
 }
 
-.instructions{
+.instructions {
   position: absolute;
   color: #fff;
   left: 1rem;
@@ -205,23 +204,52 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: bold;
 }
 
+/* BUTTON */
 
-.button{
+.button-valid {
   font-family: "Trolls";
   bottom: 1rem;
+  left: 79%;
   background-color: #fff;
   text-decoration: none;
   color: green;
   padding: 0.5rem;
+  font-size: 0.8rem;
   border-radius: 10px;
   position: absolute;
   margin: auto;
 }
 
-.button:hover{
+.button-valid:hover {
   bottom: 1rem;
   background-color: green;
   color: #fff;
   transition: all 0.4s;
   transform: translateY(-0.5rem);
 }
+
+.button-suppr {
+  font-family: "Trolls";
+  bottom: 1rem;
+  left: 90%;
+  background-color: #fff;
+  text-decoration: none;
+  color: red;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  position: absolute;
+  margin: auto;
+}
+
+.button-suppr:hover {
+  bottom: 1rem;
+  background-color: red;
+  color: #fff;
+  transition: all 0.4s;
+  transform: translateY(-0.5rem);
+}
+
+
+
+

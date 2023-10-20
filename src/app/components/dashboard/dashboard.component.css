@@ -1,9 +1,13 @@
 /* DashboardComponent's private CSS styles */
 
 h2 {
+  margin: 2rem;
   text-align: center;
   color: #fff;
+  font-family: "Trolls";
+  font-size: 2rem;
 }
+
 
 .heroes-menu {
   padding: 0;
