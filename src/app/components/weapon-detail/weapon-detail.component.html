@@ -2,13 +2,13 @@
     <div class="flex">
       <button type="button" (click)="goBack()"><img src="../../../assets/icons/goback.svg" alt="go back"
           id="goback"></button>
-      <h2>Troll : {{weapon.name | uppercase}}</h2>
+      <h2>Arme : {{weapon.name | uppercase}}</h2>
     </div>
   
     <div class="heroes-menu">
   
   
-      <p class="instructions"><u>Règles :</u> <br><br> Minimum de 1 points par Caractéristique. <br><br> Maximum de 40 Points en tout.</p>
+      <p class="instructions"><u>Règles :</u> <br><br> Maximum de +5. <br><br> Minimum de -5.<br><br> Le Total doit être égal à 0</p>
   
   
       <div class="containe-troll" (change)="handleChange()">
@@ -19,11 +19,11 @@
         <div class="input">
           <div>
   
-            <label for="hero-attaque">Attaque : </label>
+            <label for="weapon-attaque">Attaque : </label>
           </div>
           <div class="number-input">
             <!-- <button (click)="stepDown('hero-attaque')"></button> -->
-            <input id="hero-attaque" class="form-control {{classComplet}}" type="number" [min]="-5" max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="weapon.attaque"
+            <input id="weapon-attaque" class="form-control {{classComplet}}" type="number" min="{{MinLimitAttack}}" max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="weapon.attaque"
               placeholder="attaque">
             <!-- <button (click)="stepUp('hero-attaque')" class="plus"></button> -->
           </div>
@@ -31,22 +31,22 @@
         <div class="input">
           <div>
   
-            <label for="hero-esquive">Esquive : </label>
+            <label for="weapon-esquive">Esquive : </label>
           </div>
           <div class="number-input">
             <!-- <button (click)="stepDown('hero-esquive')"></button> -->
-            <input id="hero-esquive" class="form-control {{classComplet}}" type="number" [min]="-5" max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="weapon.esquive"
+            <input id="weapon-esquive" class="form-control {{classComplet}}" type="number" min="{{MinLimitEsquive}}" max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="weapon.esquive"
               placeholder="esquive">
             <!-- <button (click)="stepUp('hero-esquive')" class="plus"></button> -->
           </div>
         </div>
         <div class="input">
           <div>
-            <label for="hero-degats">Degats : </label>
+            <label for="weapon-degats">Degats : </label>
           </div>
           <div class="number-input">
             <!-- <button (click)="stepDown('hero-degats')"></button> -->
-            <input id="hero-degats" class="form-control {{classComplet}}" type="number" [min]="-5" max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="weapon.degats"
+            <input id="weapon-degats" class="form-control {{classComplet}}" type="number" min="{{MinLimitDegats}}" max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="weapon.degats"
               placeholder="degats">
             <!-- <button (click)="stepUp('hero-degats')" class="plus"></button> -->
           </div>
@@ -54,17 +54,17 @@
         <div class="input">
           <div>
   
-            <label for="hero-pv">PV : </label>
+            <label for="weapon-pv">PV : </label>
           </div>
           <div class="number-input">
             <!-- <button (click)="stepDown('hero-pv')"></button> -->
-            <input id="hero-pv" class="form-control {{classComplet}}" type="number" [min]="-5" max="{{ MaxLimitPV }}" onkeydown="return false" [(ngModel)]="weapon.PV"
+            <input id="weapon-pv" class="form-control {{classComplet}}" type="number" min="{{MinLimitPV}}" max="{{ MaxLimitPV }}" onkeydown="return false" [(ngModel)]="weapon.PV"
               placeholder="pv">
             <!-- <button (click)="stepUp('hero-pv')" class="plus"></button> -->
           </div>
         </div>
         <div class="input">
-          <p id="container-puntos" class="{{classComplet}}">Points Attribuées : <span id="puntos">{{ total }} / 0</span></p>
+          <p id="container-puntos" class="{{classComplet}}">Points restants : <span id="puntos">{{ bonus }}</span></p>
         </div>
   
       </div>

@@ -3,6 +3,7 @@ import { Weapon } from '../../data/weapon';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { WeaponService } from '../../services/weapon.service';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-weapon-detail',
@@ -18,11 +19,18 @@ export class WeaponDetailComponent {
   ) { }
   @Input() weapon?: Weapon;
 
-  total: number = 0;
+  bonus: number = 0;
+
   MaxLimitAttack: number = 5;
   MaxLimitEsquive: number = 5;
   MaxLimitDegats: number = 5;
   MaxLimitPV: number = 5;
+
+  MinLimitAttack: number = -5;
+  MinLimitEsquive: number = -5;
+  MinLimitDegats: number = -5;
+  MinLimitPV: number = -5;
+
   classComplet: string = "";
 
   ngOnInit(): void {
@@ -39,71 +47,29 @@ export class WeaponDetailComponent {
     if (id) {
       this.weaponService.getWeapon(id).subscribe((weapon) => {
         this.weapon = weapon;
+        console.log(weapon);
         this.getStats();
       });
 
     }
   }
 
+
   getStats(): void {
+    this.bonus = (this.weapon!.attaque + this.weapon!.esquive + this.weapon!.degats + this.weapon!.PV) * -1;
 
-    if (this.weapon?.attaque && this.weapon?.esquive && this.weapon?.degats && this.weapon?.PV) {
-      this.total = this.weapon?.attaque + this.weapon?.esquive + this.weapon?.degats + this.weapon?.PV;
-
-      let fourty = 40;
-
-      let detecor = fourty - this.total;
-
-      this.MaxLimitAttack = this.weapon!.attaque + detecor;
-      this.MaxLimitEsquive = this.weapon!.esquive + detecor;
-      this.MaxLimitDegats = this.weapon!.degats + detecor;
-      this.MaxLimitPV = this.weapon!.PV + detecor;
-
-
-      if (this.total >= 0) {
-        this.classComplet = "complete";
-      }
-
+    if (this.bonus === 0) {
+      this.classComplet = "complete";
     }
-
   }
 
   handleChange(): void {
 
-    this.total = this.weapon!.attaque + this.weapon!.esquive + this.weapon!.degats + this.weapon!.PV;
-    let fourty = 5;
-
-    let detecor = fourty - this.total;
-
-    this.MaxLimitAttack = this.weapon!.attaque + detecor;
-    this.MaxLimitEsquive = this.weapon!.esquive + detecor;
-    this.MaxLimitDegats = this.weapon!.degats + detecor;
-    this.MaxLimitPV = this.weapon!.PV + detecor;
+    this.bonus = (this.weapon!.attaque + this.weapon!.esquive + this.weapon!.degats + this.weapon!.PV) * -1;
 
 
-    // if (this.weapon!.attaque <= 0) {
-    //   alert("Minimum : 1");
-    //   window.location.reload();
-    // }
-    // if (this.weapon!.esquive <= 0) {
-    //   alert("Action Impossible : Dépassement Limite Points");
-    //   window.location.reload();
-    // } if (this.weapon!.degats <= 0) {
-    //   alert("Action Impossible : Dépassement Limite Points");
-    //   window.location.reload();
-    // } if (this.weapon!.PV <= 0) {
-    //   alert("Action Impossible : Dépassement Limite Points");
-    //   window.location.reload();
-    // }
-
-    // if (this.total > 40 || this.total < 4) {
-    //   alert("Action Impossible : Dépassement Points");
-    //   window.location.reload();
-    // }
-
-    if (this.total >= 0) {
+    if (this.bonus === 0) {
       this.classComplet = "complete";
-
     }
     else {
       this.classComplet = "";
@@ -117,31 +83,37 @@ export class WeaponDetailComponent {
 
   getNewSkin(attaque: number, esquive: number, degats: number, pv: number): void {
 
-    if (attaque === 10 && esquive === 10 && degats === 10 && pv === 10) {
-      this.weapon!.skin = "balanced_troll";
+    if (attaque === 0 && esquive === 0 && degats === 0 && pv === 0) {
+      this.weapon!.skin = "hands_weapon";
     }
-    else if (attaque >= 20) {
-      this.weapon!.skin = "attaque_troll"
+    else if (attaque >= 3) {
+      this.weapon!.skin = "buddy_weapon"
     }
     else if (pv >= 3) {
       this.weapon!.skin = "shield_weapon";
     }
-    else if (esquive >= 20) {
-      this.weapon!.skin = "speed_troll";
-    } else if (degats >= 20) {
-      this.weapon!.skin = "damages_troll";
+    else if (esquive >= 3) {
+      this.weapon!.skin = "confusing_weapon";
+    } else if (degats >= 3) {
+      this.weapon!.skin = "sword_weapon";
     } else {
-      this.weapon!.skin = "normal_troll";
+      this.weapon!.skin = "stick_weapon";
     }
   }
 
   UpdateWeapon(): void {
     try {
 
-      this.weaponService.updateWeapon(this.weapon!);
-      var x = document.getElementById("snackbar");
-      x!.className = "show";
-      setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+      if(this.bonus === 0){
+        this.weaponService.updateWeapon(this.weapon!);
+        var x = document.getElementById("snackbar");
+        x!.className = "show";
+        setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+      }else{
+        var x = document.getElementById("snackbar2");
+        x!.className = "show";
+        setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+      }
 
     } catch (e) {
       var x = document.getElementById("snackbar2");
@@ -154,13 +126,13 @@ export class WeaponDetailComponent {
   DeleteWeapon(): void {
     try {
 
-      if (confirm("Etes vous sur de vouloir supprimer ce Troll ?")) {
+      if (confirm("Etes vous sur de vouloir supprimer cette arme ?")) {
         this.weaponService.deleteWeapon(this.weapon!.id!);
 
         var x = document.getElementById("snackbar");
         x!.className = "show";
         setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
-        window.location.href = "../heroes";
+        window.location.href = "../weapons";
       } else {
         console.log('Action annuler');
       }
