@@ -71,7 +71,7 @@ export class AppComponent {
   }
 
   newHero() {
-    let hero: HeroInterface = {id: "", name: "Doe", attaque: 10, esquive: 10, degats: 10, PV: 10, skin: "balanced_troll"};
+    let hero: HeroInterface = {id: "", name: "Doe", attaque: 10, esquive: 10, degats: 10, PV: 10, skin: "balanced_troll", weaponId: ""};
     this.heroService.addHero(hero);
   }
 

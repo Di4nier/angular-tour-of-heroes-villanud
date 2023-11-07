@@ -9,8 +9,9 @@ export class Hero implements HeroInterface{
   degats: number;
   PV: number;
   skin: string;
+  weaponId :string;
 
-  constructor(id: string = "id_test", name: string = "Doe", attaque: number = 10, esquive: number = 10, degats: number = 10, PV: number = 10, skin: string = "balanced_troll") {
+  constructor(id: string = "id_test", name: string = "Doe", attaque: number = 10, esquive: number = 10, degats: number = 10, PV: number = 10, skin: string = "balanced_troll", weaponId: string = "") {
     this.id = id;
     this.name = name;
     this.attaque = attaque;
@@ -18,6 +19,7 @@ export class Hero implements HeroInterface{
     this.degats = degats;
     this.PV = PV;
     this.skin = skin;
+    this.weaponId = weaponId
   }
 
   isValide(): boolean {

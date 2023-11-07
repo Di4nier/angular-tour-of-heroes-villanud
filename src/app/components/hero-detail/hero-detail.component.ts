@@ -1,22 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../../data/hero';
+import { Weapon } from '../../data/weapon';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../../services/hero.service';
+import { WeaponService } from '../../services/weapon.service';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent {
+export class HeroDetailComponent implements OnInit {
+
+  weapons: Weapon[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private weaponService: WeaponService
   ) { }
   @Input() hero?: Hero;
+  @Input() weapon?: Weapon;
 
   total: number = 0;
   MaxLimitAttack: number = 40;
@@ -25,8 +31,17 @@ export class HeroDetailComponent {
   MaxLimitPV: number = 40;
   classComplet: string = "";
 
+
+  weaponSelected: string = "";
+
   ngOnInit(): void {
     this.getHero();
+    this.getWeapons();
+  }
+
+  getWeapons(): void {
+    this.weaponService.getWeapons()
+      .subscribe(weapons => this.weapons = weapons);
   }
 
   goBack(): void {
@@ -39,12 +54,12 @@ export class HeroDetailComponent {
     if (id) {
       this.heroService.getHero(id).subscribe((hero) => {
         this.hero = hero;
-        console.log(hero);
         this.getStats();
       });
 
     }
   }
+
 
   getStats(): void {
 
@@ -59,6 +74,12 @@ export class HeroDetailComponent {
       this.MaxLimitEsquive = this.hero!.esquive + detecor;
       this.MaxLimitDegats = this.hero!.degats + detecor;
       this.MaxLimitPV = this.hero!.PV + detecor;
+
+      if(this.hero?.weaponId){
+        this.WeaponSelector(this.hero.weaponId);
+      }
+
+
 
 
       if (this.total >= 40) {
@@ -134,10 +155,24 @@ export class HeroDetailComponent {
     }
   }
 
+  WeaponSelector(id: string): void {
+    this.weaponSelected = id
+
+    if (id) {
+      this.weaponService.getWeapon(id).subscribe((weapon) => {
+        this.weapon = weapon;
+        console.log(weapon);
+      });
+
+    }
+
+  }
+
 
   UpdateTroll(): void {
     try {
 
+      this.hero!.weaponId = this.weaponSelected;
       this.heroService.updateHero(this.hero!);
       var x = document.getElementById("snackbar");
       x!.className = "show";

@@ -8,7 +8,8 @@
   <div class="heroes-menu">
 
 
-    <p class="instructions"><u>Règles :</u> <br><br> Minimum de 1 points par Caractéristique. <br><br> Maximum de 40 Points en tout.</p>
+    <p class="instructions"><u>Règles :</u> <br><br> Minimum de 1 points par Caractéristique. <br><br> Maximum de 40
+      Points en tout.</p>
 
 
     <div class="containe-troll" (change)="handleChange()">
@@ -23,8 +24,8 @@
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-attaque')"></button> -->
-          <input id="hero-attaque" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="hero.attaque"
-            placeholder="attaque">
+          <input id="hero-attaque" class="form-control {{classComplet}}" type="number" [min]="1"
+            max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="hero.attaque" placeholder="attaque">
           <!-- <button (click)="stepUp('hero-attaque')" class="plus"></button> -->
         </div>
       </div>
@@ -35,8 +36,8 @@
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-esquive')"></button> -->
-          <input id="hero-esquive" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="hero.esquive"
-            placeholder="esquive">
+          <input id="hero-esquive" class="form-control {{classComplet}}" type="number" [min]="1"
+            max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="hero.esquive" placeholder="esquive">
           <!-- <button (click)="stepUp('hero-esquive')" class="plus"></button> -->
         </div>
       </div>
@@ -46,8 +47,8 @@
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-degats')"></button> -->
-          <input id="hero-degats" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="hero.degats"
-            placeholder="degats">
+          <input id="hero-degats" class="form-control {{classComplet}}" type="number" [min]="1"
+            max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="hero.degats" placeholder="degats">
           <!-- <button (click)="stepUp('hero-degats')" class="plus"></button> -->
         </div>
       </div>
@@ -58,22 +59,66 @@
         </div>
         <div class="number-input">
           <!-- <button (click)="stepDown('hero-pv')"></button> -->
-          <input id="hero-pv" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitPV }}" onkeydown="return false" [(ngModel)]="hero.PV"
-            placeholder="pv">
+          <input id="hero-pv" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitPV }}"
+            onkeydown="return false" [(ngModel)]="hero.PV" placeholder="pv">
           <!-- <button (click)="stepUp('hero-pv')" class="plus"></button> -->
         </div>
       </div>
       <div class="input">
-        <p id="container-puntos" class="{{classComplet}}">Points Attribuées : <span id="puntos">{{ total }} / 40</span></p>
+        <p id="container-puntos" class="{{classComplet}}">Points Attribuées : <span id="puntos">{{ total }} / 40</span>
+        </p>
       </div>
 
     </div>
 
-    <button (click)="UpdateTroll()" class="button-valid" >Sauvegarder</button>
-    <button (click)="DeleteTroll()" class="button-suppr" >Supprimer</button>
+    <button (click)="UpdateTroll()" class="button-valid">Sauvegarder</button>
+    <button (click)="DeleteTroll()" class="button-suppr">Supprimer</button>
 
-    <div class="container-img">
+    <!-- <select class="selectorWeapon">
+      <option  selected disabled>Sélectionner une arme</option>
+      <option *ngFor="let weapon of weapons" class="optionWeapon">
+        <div>
+          <img src="../../../assets/trollskins/attaque_troll.png" alt="">
+        </div>
+        {{weapon.name}}
+      </option>
+    </select> -->
+
+    <form id="app-cover">
+      <div id="select-box">
+        <input type="checkbox" id="options-view-button">
+        <div id="select-button" class="brd">
+          <div id="selected-value">
+            <span>Selectionner une arme</span>
+          </div>
+          <div id="chevrons">
+            <i class="fa-solid fa-chevron-up"></i>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+        <div id="options">
+          <div *ngFor="let weapon of weapons" class="option">
+            <input class="s-c top" type="radio" name="weap" [(ngModel)]="hero.weaponId"
+              (change)="WeaponSelector(weapon.id!)" value="{{weapon.id}}">
+            <input class="s-c bottom" type="radio" name="weap" [(ngModel)]="hero.weaponId"
+              (change)="WeaponSelector(weapon.id!)" value="{{weapon.id}}">
+            <i class="fa-solid fa-wand-sparkles"></i>
+            <span class="label">{{weapon.name}}</span>
+            <span class="opt-val">{{weapon.name}}</span>
+          </div>
+          <div id="option-bg"></div>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="hero.weaponId != ''; else elseBlock" class="container-img">
+      <img src="../../../assets/weaponskins/{{weapon?.skin}}.gif" id="skin-weapon">
       <img src="../../../assets/trollskins/{{hero.skin}}.png" id="skin-troll">
     </div>
+    <ng-template #elseBlock>
+      <div class="container-img">
+      <img src="../../../assets/trollskins/{{hero.skin}}.png" id="skin-troll">
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -6,4 +6,5 @@ export interface HeroInterface {
   degats: number;
   PV: number;
   skin: string;
+  weaponId: string;
 }
