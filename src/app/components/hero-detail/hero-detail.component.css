@@ -3,7 +3,7 @@ h2 {
   margin: 2rem;
   text-align: center;
   color: #fff;
-  font-family: "Trolls";
+  font-family:  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
   font-size: 2rem;
 }
 
@@ -126,6 +126,19 @@ button:disabled {
 }
 
 
+
+
+.addPoints{
+  margin: 0.6rem;
+  color: rgb(6, 206, 6);
+  font-size: 1.5rem;
+}
+
+.removePoints{
+  margin: 0.6rem;
+  color: orange;
+  font-size: 1.5rem;
+}
 
 
 

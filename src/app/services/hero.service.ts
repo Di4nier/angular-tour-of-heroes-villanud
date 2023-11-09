@@ -28,7 +28,6 @@ export class HeroService {
 
     // get a reference to the user-profile collection
     const heroCollection = collection(this.firestore, HeroService.url);
-    console.log(heroCollection);
 
     ///////////
     // Solution 1 : Transformation en une liste d'objets "prototype" de type Hero

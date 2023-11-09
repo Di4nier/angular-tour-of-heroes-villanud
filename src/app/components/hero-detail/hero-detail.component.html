@@ -26,6 +26,7 @@
           <!-- <button (click)="stepDown('hero-attaque')"></button> -->
           <input id="hero-attaque" class="form-control {{classComplet}}" type="number" [min]="1"
             max="{{ MaxLimitAttack }}" onkeydown="return false" [(ngModel)]="hero.attaque" placeholder="attaque">
+            <span class="{{weaponattakClass}}">{{weapon?.attaque}}</span>
           <!-- <button (click)="stepUp('hero-attaque')" class="plus"></button> -->
         </div>
       </div>
@@ -38,6 +39,7 @@
           <!-- <button (click)="stepDown('hero-esquive')"></button> -->
           <input id="hero-esquive" class="form-control {{classComplet}}" type="number" [min]="1"
             max="{{ MaxLimitEsquive }}" onkeydown="return false" [(ngModel)]="hero.esquive" placeholder="esquive">
+            <span class="{{weaponesquiveClass}}">{{weapon?.esquive}}</span>
           <!-- <button (click)="stepUp('hero-esquive')" class="plus"></button> -->
         </div>
       </div>
@@ -49,6 +51,7 @@
           <!-- <button (click)="stepDown('hero-degats')"></button> -->
           <input id="hero-degats" class="form-control {{classComplet}}" type="number" [min]="1"
             max="{{ MaxLimitDegats }}" onkeydown="return false" [(ngModel)]="hero.degats" placeholder="degats">
+            <span class="{{weapondegatsClass}}">{{weapon?.degats}}</span>
           <!-- <button (click)="stepUp('hero-degats')" class="plus"></button> -->
         </div>
       </div>
@@ -61,6 +64,7 @@
           <!-- <button (click)="stepDown('hero-pv')"></button> -->
           <input id="hero-pv" class="form-control {{classComplet}}" type="number" [min]="1" max="{{ MaxLimitPV }}"
             onkeydown="return false" [(ngModel)]="hero.PV" placeholder="pv">
+            <span class="{{weaponPVClass}}">{{weapon?.PV}}</span>
           <!-- <button (click)="stepUp('hero-pv')" class="plus"></button> -->
         </div>
       </div>

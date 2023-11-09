@@ -25,9 +25,10 @@
     <li *ngFor="let hero of heroes">
       <a routerLink="/troll/detail/{{hero.id}}">
         <div class="myCard">
-          <div class="innerCard">
+          <div class="innerCard" *ngIf="hero.weaponId != ''; else elseBlock">
             <div class="frontSide">
               <p class="title">{{hero.name}}</p>
+              <img src="../../../assets/weaponskins/{{hero.weaponId}}.gif" id="imgweapon">
               <img src="../../../assets/trollskins/{{hero.skin}}.png" id="imgtroll">
             </div>
             <div class="backSide">
@@ -35,32 +36,60 @@
               <div class="icon-container">
                 <div class="icon-div">
                   <img src="../../../assets/icons/attaque.svg" class="icon-attack" title="Attaque">
-                  <p>{{hero.attaque}}</p>
+                  <p [ngClass]="{ 'addPoints': hero.attaque > 5, 'removePoints': hero.attaque <= 5 }">{{hero.attaque}}</p>
                 </div>
 
                 <div class="icon-div">
                   <img src="../../../assets/icons/esquive.svg" class="icon-esquive" title="Esquive">
-                  <p>{{hero.esquive}}</p>
+                  <p >{{hero.esquive}}</p>
                 </div>
 
                 <div class="icon-div">
                   <img src="../../../assets/icons/degats.svg" class="icon-degats" title="Degats">
-                  <p>{{hero.degats}}</p>
+                  <p >{{hero.degats}}</p>
                 </div>
 
                 <div class="icon-div">
                   <img src="../../../assets/icons/pv.svg" class="icon-pv" title="Vie">
-                  <p>{{hero.PV}}</p>
+                  <p >{{hero.PV}}</p>
                 </div>
               </div>
             </div>
           </div>
+          <ng-template #elseBlock>
+            <div class="innerCard">
+              <div class="frontSide">
+                <p class="title">{{hero.name}}</p>
+                <img src="../../../assets/trollskins/{{hero.skin}}.png" id="imgtroll">
+              </div>
+              <div class="backSide">
+                <p class="title">Stats</p>
+                <div class="icon-container">
+                  <div class="icon-div">
+                    <img src="../../../assets/icons/attaque.svg" class="icon-attack" title="Attaque">
+                    <p>{{hero.attaque}}</p>
+                  </div>
+
+                  <div class="icon-div">
+                    <img src="../../../assets/icons/esquive.svg" class="icon-esquive" title="Esquive">
+                    <p>{{hero.esquive}}</p>
+                  </div>
+
+                  <div class="icon-div">
+                    <img src="../../../assets/icons/degats.svg" class="icon-degats" title="Degats">
+                    <p>{{hero.degats}}</p>
+                  </div>
+
+                  <div class="icon-div">
+                    <img src="../../../assets/icons/pv.svg" class="icon-pv" title="Vie">
+                    <p>{{hero.PV}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </a>
-      <!-- <a routerLink="/detail/{{hero.id}}">
-            <span class="badge">{{hero.id}}</span> {{hero.name}}
-            
-          </a> -->
     </li>
   </ul>
 

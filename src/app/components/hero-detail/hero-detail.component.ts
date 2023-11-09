@@ -34,6 +34,11 @@ export class HeroDetailComponent implements OnInit {
 
   weaponSelected: string = "";
 
+  weaponattakClass: string = "";
+  weaponesquiveClass: string = "";
+  weapondegatsClass: string = "";
+  weaponPVClass: string = "";
+
   ngOnInit(): void {
     this.getHero();
     this.getWeapons();
@@ -75,12 +80,9 @@ export class HeroDetailComponent implements OnInit {
       this.MaxLimitDegats = this.hero!.degats + detecor;
       this.MaxLimitPV = this.hero!.PV + detecor;
 
-      if(this.hero?.weaponId){
+      if (this.hero?.weaponId) {
         this.WeaponSelector(this.hero.weaponId);
       }
-
-
-
 
       if (this.total >= 40) {
         this.classComplet = "complete";
@@ -161,7 +163,31 @@ export class HeroDetailComponent implements OnInit {
     if (id) {
       this.weaponService.getWeapon(id).subscribe((weapon) => {
         this.weapon = weapon;
-        console.log(weapon);
+
+        if (this.weapon.attaque > 0) {
+          this.weaponattakClass = "addPoints";
+        } else {
+          this.weaponattakClass = "removePoints";
+        }
+
+        if (this.weapon.esquive > 0) {
+          this.weaponesquiveClass = "addPoints";
+        } else {
+          this.weaponesquiveClass = "removePoints";
+        }
+
+        if (this.weapon.degats > 0) {
+          this.weapondegatsClass = "addPoints";
+        } else {
+          this.weapondegatsClass = "removePoints";
+        }
+
+        if (this.weapon.PV > 0) {
+          this.weaponPVClass = "addPoints";
+        } else {
+          this.weaponPVClass = "removePoints";
+        }
+
       });
 
     }
@@ -189,16 +215,16 @@ export class HeroDetailComponent implements OnInit {
   DeleteTroll(): void {
     try {
 
-      if (confirm("Etes vous sur de vouloir supprimer ce Troll ?")) {
-        this.heroService.deleteHero(this.hero!.id!);
+      // if (confirm("Etes vous sur de vouloir supprimer ce Troll ?")) {
+      this.heroService.deleteHero(this.hero!.id!);
 
-        var x = document.getElementById("snackbar");
-        x!.className = "show";
-        setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
-        window.location.href = "../heroes";
-      } else {
-        console.log('Action annuler');
-      }
+      var x = document.getElementById("snackbar");
+      x!.className = "show";
+      setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
+      window.location.href = "../heroes";
+      // } else {
+      //   console.log('Action annuler');
+      // }
     } catch (e) {
       var x = document.getElementById("snackbar2");
       x!.className = "show";

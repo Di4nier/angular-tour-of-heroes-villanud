@@ -93,7 +93,7 @@ export class WeaponDetailComponent {
       this.weapon!.skin = "shield_weapon";
     }
     else if (esquive >= 3) {
-      this.weapon!.skin = "confusing_weapon";
+      this.weapon!.skin = "dodge_weapon";
     } else if (degats >= 3) {
       this.weapon!.skin = "sword_weapon";
     } else {
@@ -126,16 +126,16 @@ export class WeaponDetailComponent {
   DeleteWeapon(): void {
     try {
 
-      if (confirm("Etes vous sur de vouloir supprimer cette arme ?")) {
+      // if (confirm("Etes vous sur de vouloir supprimer cette arme ?")) {
         this.weaponService.deleteWeapon(this.weapon!.id!);
 
         var x = document.getElementById("snackbar");
         x!.className = "show";
         setTimeout(function () { x!.className = x!.className.replace("show", ""); }, 3000);
         window.location.href = "../weapons";
-      } else {
-        console.log('Action annuler');
-      }
+      // } else {
+      //   console.log('Action annuler');
+      // }
     } catch (e) {
       var x = document.getElementById("snackbar2");
       x!.className = "show";
