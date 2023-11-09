@@ -1,7 +1,25 @@
 <h2>Top Trolls</h2>
 <div class="heroes-menu">
-  <a *ngFor="let hero of heroes"
-  routerLink="/detail/{{hero.id}}">
-  {{hero.name}}
-</a>
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes">
+      <a routerLink="/detail/{{hero.id}}">
+        <div class="card">
+          <div class="img">
+            <img src="../../../assets/trollskins/{{hero.skin}}_face.png" id="imgtroll">
+          </div>
+          <div class="textBox">
+            <div class="textContent">
+              <p class="h1">{{hero.name}}</p>
+              <span *ngIf="hero.weaponId != ''; else ElseBlock" class="span"><img src="../../../assets/icons/linked.svg" alt="lié" id="link"></span>
+              <ng-template #ElseBlock>
+                <span class="span"></span>
+              </ng-template>
+            </div>
+            <p class="p"></p>
+          <div>
+        </div></div></div>
+      </a>
+    </li>
+    </ul>
 </div>
+
